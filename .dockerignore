@@ -10,4 +10,3 @@ server/node_modules/
 server/.env
 server/.gitignore
 server/.prettierignore
-hello
