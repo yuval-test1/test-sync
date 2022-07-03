@@ -1,1 +1,3 @@
-export type CustomerCreateInput = {};
+export type CustomerCreateInput = {
+  name?: string | null;
+};

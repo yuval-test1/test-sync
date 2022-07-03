@@ -18,6 +18,9 @@ import * as gqlACGuard from "../../auth/gqlAC.guard";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
 import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
+import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
+import { CreateCustomerArgs } from "./CreateCustomerArgs";
+import { UpdateCustomerArgs } from "./UpdateCustomerArgs";
 import { DeleteCustomerArgs } from "./DeleteCustomerArgs";
 import { CustomerFindManyArgs } from "./CustomerFindManyArgs";
 import { CustomerFindUniqueArgs } from "./CustomerFindUniqueArgs";
@@ -79,6 +82,47 @@ export class CustomerResolverBase {
       return null;
     }
     return result;
+  }
+
+  @common.UseInterceptors(AclValidateRequestInterceptor)
+  @graphql.Mutation(() => Customer)
+  @nestAccessControl.UseRoles({
+    resource: "Customer",
+    action: "create",
+    possession: "any",
+  })
+  async createCustomer(
+    @graphql.Args() args: CreateCustomerArgs
+  ): Promise<Customer> {
+    return await this.service.create({
+      ...args,
+      data: args.data,
+    });
+  }
+
+  @common.UseInterceptors(AclValidateRequestInterceptor)
+  @graphql.Mutation(() => Customer)
+  @nestAccessControl.UseRoles({
+    resource: "Customer",
+    action: "update",
+    possession: "any",
+  })
+  async updateCustomer(
+    @graphql.Args() args: UpdateCustomerArgs
+  ): Promise<Customer | null> {
+    try {
+      return await this.service.update({
+        ...args,
+        data: args.data,
+      });
+    } catch (error) {
+      if (isRecordNotFoundError(error)) {
+        throw new apollo.ApolloError(
+          `No resource was found for ${JSON.stringify(args.where)}`
+        );
+      }
+      throw error;
+    }
   }
 
   @graphql.Mutation(() => Customer)

@@ -50,6 +50,7 @@ export class CustomerControllerBase {
       select: {
         createdAt: true,
         id: true,
+        name: true,
         updatedAt: true,
       },
     });
@@ -72,6 +73,7 @@ export class CustomerControllerBase {
       select: {
         createdAt: true,
         id: true,
+        name: true,
         updatedAt: true,
       },
     });
@@ -95,6 +97,7 @@ export class CustomerControllerBase {
       select: {
         createdAt: true,
         id: true,
+        name: true,
         updatedAt: true,
       },
     });
@@ -127,6 +130,7 @@ export class CustomerControllerBase {
         select: {
           createdAt: true,
           id: true,
+          name: true,
           updatedAt: true,
         },
       });
@@ -158,6 +162,7 @@ export class CustomerControllerBase {
         select: {
           createdAt: true,
           id: true,
+          name: true,
           updatedAt: true,
         },
       });
