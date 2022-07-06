@@ -49,7 +49,9 @@ export class CustomerControllerBase {
       data: data,
       select: {
         createdAt: true,
+        desc: true,
         id: true,
+        name: true,
         updatedAt: true,
       },
     });
@@ -71,7 +73,9 @@ export class CustomerControllerBase {
       ...args,
       select: {
         createdAt: true,
+        desc: true,
         id: true,
+        name: true,
         updatedAt: true,
       },
     });
@@ -94,7 +98,9 @@ export class CustomerControllerBase {
       where: params,
       select: {
         createdAt: true,
+        desc: true,
         id: true,
+        name: true,
         updatedAt: true,
       },
     });
@@ -126,7 +132,9 @@ export class CustomerControllerBase {
         data: data,
         select: {
           createdAt: true,
+          desc: true,
           id: true,
+          name: true,
           updatedAt: true,
         },
       });
@@ -157,7 +165,9 @@ export class CustomerControllerBase {
         where: params,
         select: {
           createdAt: true,
+          desc: true,
           id: true,
+          name: true,
           updatedAt: true,
         },
       });
