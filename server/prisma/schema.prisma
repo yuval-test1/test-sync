@@ -20,6 +20,14 @@ model User {
 
 model Customer {
   createdAt DateTime @default(now())
+  desc      String?
+  id        String   @id @default(cuid())
+  name      String?
+  updatedAt DateTime @updatedAt
+}
+
+model Order {
+  createdAt DateTime @default(now())
   id        String   @id @default(cuid())
   updatedAt DateTime @updatedAt
 }
